@@ -130,6 +130,9 @@ const femaleCharacters = [];
 for (let i = 0; i < starWarsCharacters.length; i++) {
   if (starWarsCharacters[i].gender === 'female')
     femaleCharacters.push(starWarsCharacters[i].name);
+
+  // CORREZIONE: erano da pushare tutti gli oggetti quindi
+  //femaleCharacters.push(starWarsCharacters[i]);
 }
 
 console.log('ESERCIZIO 3: ', femaleCharacters);
@@ -157,15 +160,23 @@ console.log('ESERCIZIO 4: ', eyeColor);
 for (let i = 0; i < starWarsCharacters.length; i++) {
   switch (starWarsCharacters[i].eye_color) {
     case 'blue':
-      eyeColor['blue'].push(starWarsCharacters[i].name);
+      eyeColor['blue'].push(starWarsCharacters[i].name); // CORREZIONE: erano da pushare tutti gli oggetti quindi anche in questo caso togliere .name;
+    //CORREZIONE: inserire break
     case 'yellow':
       eyeColor['yellow'].push(starWarsCharacters[i].name);
+    //CORREZIONE: inserire break
     case 'brown':
       eyeColor['brown'].push(starWarsCharacters[i].name);
+    //CORREZIONE: inserire break
     case 'red':
       eyeColor['red'].push(starWarsCharacters[i].name);
+    //CORREZIONE: inserire break
     case 'blue_gray':
       eyeColor['blue-gray'].push(starWarsCharacters[i].name);
+    //CORREZIONE: inserire break
+    //CORREZIONE: aggiungere anche
+    //default:
+    //--vuoto-- ma è meglio inserirlo
   }
 }
 
@@ -181,7 +192,7 @@ for (let i = 0; i < starWarsCharacters.length; i++) {
   crewMass = crewMass + starWarsCharacters[i].mass;
 }
 
-console.log('ESERCIZIO 6: ', crewMass); // 954 con i pesi originali
+console.log('ESERCIZIO 6: ', crewMass); // 957 con i pesi originali
 
 /* ESERCIZIO 7
   Crea uno if/else statement per rivelare la tipologia di carico, utilizzando la massa totale, di un'ipotetica astronave contenente i personaggi dell'array "starWarsCharacters".
@@ -200,6 +211,7 @@ console.log('ESERCIZIO 6: ', crewMass); // 954 con i pesi originali
 if (crewMass < 500) {
   console.log('ESERCIZIO 7: ' + 'Ship is under loaded');
 } else if (crewMass >= 500 && crewMass < 700) {
+  // ALTERNATIVA: (crewMass < 700) , andava bene lo stesso
   console.log('ESERCIZIO 7: ' + 'Ship is half loaded');
 } else if (crewMass >= 700 && crewMass < 900) {
   console.log('ESERCIZIO 7: ' + 'Warning: Load is over 700');
@@ -222,6 +234,16 @@ for (let i = 0; i < starWarsCharacters.length; i++) {
 }
 
 console.log('ESERCIZIO 8:', starWarsCharacters);
+
+/* VERSIONE CON CREAZIONE DI UNA COPIA DELL'ARRAY:
+const newStarWarsCharacters = JSON.parse(JSON.stringify(starWarsCharacters))
+
+for (let i = 0; i < newStarWarsCharacters.length; i++) {
+  if (newStarWarsCharacters[i].gender === 'n/a') {
+    newStarWarsCharacters[i].gender = 'robot';
+  }
+}
+*/
 
 /* --EXTRA-- ESERCIZIO 9
   Utilizzando gli elementi presenti nell'array "femaleCharacters" rimuovi dall'array "charactersNames" le stringhe corrispondenti a personaggi con lo stesso nome.
@@ -249,6 +271,11 @@ for (var iIndexA, iIndexB = 0; iIndexB < arrayB.length; iIndexB++) {
 	iIndexA = arrayA.indexOf(arrayB[iIndexB]);
 	if (iIndexA > -1) { arrayA.splice(iIndexA, 1); }
 }
+
+SPIEGAZIONE: 
+ il metodo indexOf cerca se dentro un array ci sia un particolare elemento (in questo caso l'elemento arrayB[iIndexB], quindi uno alla volta TUTTI gli elementi dell'array B). Se viene trovato un match (e quindi dentro arrayA viene trovato uno degli elementi di arrayB) allora iIndexA diventa l'INDICE (cioè la posizione) di tale elemento dentro arrayA. Di conseguenza poi è possibile rimuovere tale elemento facendo uno splice su arrayA.
+L'if che vedi alla fine serve a evitare che in caso di elemento non trovato (quindi che nell'arrayA non venga trovato uno degli elementi di arrayB) si proceda ad un'eliminazione non necessaria, perchè il metodo indexOf se NON trova un match torna -1, cioè un indice invalido.
+Quindi solo se ad ogni giro iIndexA diventa un indice valido (maggiore di -1 che sarebbe il valore ritornato in caso di NON match) viene permessa l'eliminazione di tale elemento su arrayA tramite lo splice.
   
 */
 
