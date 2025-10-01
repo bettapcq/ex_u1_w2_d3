@@ -259,7 +259,7 @@ for (var iIndexA, iIndexB = 0; iIndexB < arrayB.length; iIndexB++) {
 let selected = Math.floor(Math.random() * starWarsCharacters.length);
 
 console.log(
-  'character selected is:',
+  'ESERCIZIO 10-> The character selected is:',
   starWarsCharacters[selected].name,
   '! is',
   starWarsCharacters[selected].height + 'cm tall, weighs',
